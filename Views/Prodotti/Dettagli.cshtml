@@ -1,0 +1,35 @@
+@model Prodotto
+
+@{
+    ViewData["Title"] = @Model.Nome;
+}
+
+<d<div class="container mt-5">
+    <div class="row">
+        <!-- Colonna immagine principale -->
+        <div class="col-md-6">
+            <div class="card border-0 shadow-lg bg-transparent">
+                <img src="@Model.ImmagineCopertina" class="img-fluid rounded shadow-lg product-detail-image" alt="@Model.Nome">
+            </div>
+        </div>
+
+        
+        <div class="col-md-6">
+            <div class="product-info p-4 rounded shadow">
+                <h2 class="fw-bold text-white">@Model.Nome</h2>
+                <p class="lead price-box"><strong>€ @Model.Prezzo</strong></p>
+                <p class="text-light">@Model.Descrizione</p>
+
+                <h4 class="mt-4 text-white">Altre immagini</h4>
+                <div class="d-flex flex-wrap">
+                    @foreach (var img in Model.ImmaginiAggiuntive)
+    {
+                    <img src="@img" class="img-thumbnail mx-2" style="width: 200px; height: 200px; border-radius: 8px; object-fit: cover;" alt="Immagine aggiuntiva">
+    }
+                </div>
+
+                <a href="/Prodotti/Index" class="btn btn-success mt-4">Torna alla Vetrina</a>
+            </div>
+        </div>
+    </div>
+</div>

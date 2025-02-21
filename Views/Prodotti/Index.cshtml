@@ -1,0 +1,28 @@
+@model List<Prodotto>
+
+    @{
+    ViewData["Title"] = "Vetrina Prodotti";
+    }
+
+    <div class="container py-5">
+        <h2 class="text-center fw-bold mb-4 text-white">Vetrina Prodotti</h2>
+
+        <div class="row">
+            @foreach (var prodotto in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card product-card shadow-lg border-0">
+                    <img src="@prodotto.ImmagineCopertina" class="card-img-top product-image" alt="@prodotto.Nome">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">@prodotto.Nome</h5>
+                        <p class="card-text text-muted"><strong>€ @prodotto.Prezzo</strong></p>
+                        <div class="d-flex justify-content-center">
+                            <a href="/Prodotti/Dettagli/@prodotto.Id" class="btn btn-success me-2">Dettagli</a>
+                            <a href="/Prodotti/Modifica/@prodotto.Id" class="btn btn-outline-success">Modifica</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
+    </div>
