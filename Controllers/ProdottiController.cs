@@ -39,9 +39,43 @@ public class ProdottiController : Controller
         }
 
         prodottoEsistente.Nome = modificato.Nome;
-        prodottoEsistente.Prezzo = modificato.Prezzo;
+        prodottoEsistente.Prezzo = Math.Round(modificato.Prezzo, 2);
         prodottoEsistente.Descrizione = modificato.Descrizione;
         prodottoEsistente.ImmagineCopertina = modificato.ImmagineCopertina;
+
+        return RedirectToAction("Index");
+    }
+
+    //  FUNZIONE PER AGGIUNGERE PRODOTTI
+
+    
+    public IActionResult Aggiungi()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult SalvaNuovo(Prodotto nuovoProdotto, List<string> ImmaginiAggiuntive)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View("Aggiungi", nuovoProdotto);
+        }
+
+        
+        nuovoProdotto.Id = ProdottiRepository.GetProdotti().Count + 1;
+
+        if (ImmaginiAggiuntive != null && ImmaginiAggiuntive.Count >= 2)
+        {
+            nuovoProdotto.ImmaginiAggiuntive = new List<string> { ImmaginiAggiuntive[0], ImmaginiAggiuntive[1] };
+        }
+        else
+        {
+            nuovoProdotto.ImmaginiAggiuntive = new List<string>(); 
+        }
+
+        
+        ProdottiRepository.AggiungiProdotto(nuovoProdotto);
 
         return RedirectToAction("Index");
     }

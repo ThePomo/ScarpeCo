@@ -22,4 +22,6 @@ public static class ProdottiRepository
     public static List<Prodotto> GetProdotti() => prodotti;
 
     public static Prodotto GetProdottoById(int id) => prodotti.FirstOrDefault(p => p.Id == id);
+
+    public static void AggiungiProdotto(Prodotto prodotto) { prodotti.Add(prodotto); }
 }

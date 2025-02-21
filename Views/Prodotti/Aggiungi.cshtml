@@ -1,0 +1,41 @@
+@model Prodotto
+
+<div class="container mt-5">
+    <h2 class="text-white">Aggiungi un Nuovo Prodotto</h2>
+
+    <form asp-action="SalvaNuovo" method="post">
+        <div class="mb-3">
+            <label class="form-label text-white">Nome Prodotto</label>
+            <input type="text" class="form-control" asp-for="Nome" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white">Prezzo (€)</label>
+            <input type="number" class="form-control" asp-for="Prezzo" step="0.01" min="0.01" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white">Descrizione</label>
+            <textarea class="form-control" asp-for="Descrizione"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white">Immagine Copertina (URL)</label>
+            <input type="text" class="form-control" asp-for="ImmagineCopertina">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white">Immagine Aggiuntiva 1 (URL)</label>
+            <input type="text" class="form-control" name="ImmaginiAggiuntive" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white">Immagine Aggiuntiva 2 (URL)</label>
+            <input type="text" class="form-control" name="ImmaginiAggiuntive" required>
+        </div>
+
+
+        <button type="submit" class="btn btn-success">Salva Prodotto</button>
+        <a href="/Home/Index" class="btn btn-secondary">Annulla</a>
+    </form>
+</div>
